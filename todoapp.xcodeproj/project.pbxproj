@@ -19,6 +19,10 @@
 		53841880188CA34700929BA1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53841868188CA34700929BA1 /* UIKit.framework */; };
 		53841888188CA34700929BA1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 53841886188CA34700929BA1 /* InfoPlist.strings */; };
 		5384188A188CA34700929BA1 /* todoappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 53841889188CA34700929BA1 /* todoappTests.m */; };
+		53841896188CA37600929BA1 /* ToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53841894188CA37600929BA1 /* ToDoListViewController.m */; };
+		53841897188CA37600929BA1 /* ToDoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53841895188CA37600929BA1 /* ToDoListViewController.xib */; };
+		5384189A188CA78600929BA1 /* EditableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53841899188CA78600929BA1 /* EditableCell.m */; };
+		5384189E188CB45600929BA1 /* EditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5384189D188CB45600929BA1 /* EditableCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,12 @@
 		53841885188CA34700929BA1 /* todoappTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "todoappTests-Info.plist"; sourceTree = "<group>"; };
 		53841887188CA34700929BA1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		53841889188CA34700929BA1 /* todoappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = todoappTests.m; sourceTree = "<group>"; };
+		53841893188CA37600929BA1 /* ToDoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoListViewController.h; sourceTree = "<group>"; };
+		53841894188CA37600929BA1 /* ToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoListViewController.m; sourceTree = "<group>"; };
+		53841895188CA37600929BA1 /* ToDoListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToDoListViewController.xib; sourceTree = "<group>"; };
+		53841898188CA78600929BA1 /* EditableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableCell.h; sourceTree = "<group>"; };
+		53841899188CA78600929BA1 /* EditableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableCell.m; sourceTree = "<group>"; };
+		5384189D188CB45600929BA1 /* EditableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditableCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +87,12 @@
 		53841858188CA34700929BA1 = {
 			isa = PBXGroup;
 			children = (
+				5384189D188CB45600929BA1 /* EditableCell.xib */,
+				53841898188CA78600929BA1 /* EditableCell.h */,
+				53841899188CA78600929BA1 /* EditableCell.m */,
+				53841893188CA37600929BA1 /* ToDoListViewController.h */,
+				53841894188CA37600929BA1 /* ToDoListViewController.m */,
+				53841895188CA37600929BA1 /* ToDoListViewController.xib */,
 				5384186A188CA34700929BA1 /* todoapp */,
 				53841883188CA34700929BA1 /* todoappTests */,
 				53841863188CA34700929BA1 /* Frameworks */,
@@ -221,6 +237,8 @@
 			files = (
 				5384186F188CA34700929BA1 /* InfoPlist.strings in Resources */,
 				53841877188CA34700929BA1 /* Images.xcassets in Resources */,
+				53841897188CA37600929BA1 /* ToDoListViewController.xib in Resources */,
+				5384189E188CB45600929BA1 /* EditableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,8 +257,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53841896188CA37600929BA1 /* ToDoListViewController.m in Sources */,
 				53841875188CA34700929BA1 /* AppDelegate.m in Sources */,
 				53841871188CA34700929BA1 /* main.m in Sources */,
+				5384189A188CA78600929BA1 /* EditableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
