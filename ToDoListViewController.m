@@ -16,11 +16,12 @@ static NSString * const TODOLIST = @"toDoList";
 @interface ToDoListViewController ()
 
 @property (nonatomic, strong) NSMutableArray *taskList;
+@property (nonatomic, strong) EditableCell *prototypeCell;
 
 - (void)addNewEntry;
 - (void)startEditing;
 - (void)stopEditing;
-- (void)updateTask:(UITextField *)textField indexPath:(NSIndexPath *)indexPath;
+- (void)updateTask:(UITextView *)textView indexPath:(NSIndexPath *)indexPath;
 - (void)persistData;
 
 @end
@@ -93,12 +94,12 @@ static NSString * const TODOLIST = @"toDoList";
     static NSString *CellIdentifier = @"EditableCell";
     EditableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.showsReorderControl = YES;
-    cell.taskField.text = [self.taskList objectAtIndex:indexPath.row];
+    cell.taskView.text = [self.taskList objectAtIndex:indexPath.row];
     //NSLog(@"index path is %i", indexPath.row);
-    cell.taskField.delegate = self;
-    [cell.taskField setReturnKeyType:UIReturnKeyDone];
-    cell.taskField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    objc_setAssociatedObject(cell.taskField, &indexPathKey, indexPath, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    cell.taskView.delegate = self;
+    [cell.taskView setReturnKeyType:UIReturnKeyDone];
+    //cell.taskView.clearsOnInsertion = YES;
+    objc_setAssociatedObject(cell.taskView, &indexPathKey, indexPath, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
     
     return cell;
@@ -120,7 +121,7 @@ static NSString * const TODOLIST = @"toDoList";
     
      EditableCell *editableCell = (EditableCell* )((id)cell);
     
-    [editableCell.taskField becomeFirstResponder];
+    [editableCell.taskView becomeFirstResponder];
 }
 
 - (void)startEditing {
@@ -134,8 +135,8 @@ static NSString * const TODOLIST = @"toDoList";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStylePlain target:self action:@selector(startEditing)];
 }
 
-- (void)updateTask:(UITextField *)textField indexPath:(NSIndexPath *)indexPath {
-    [self.taskList setObject:textField.text atIndexedSubscript:indexPath.row];
+- (void)updateTask:(UITextView *)textView indexPath:(NSIndexPath *)indexPath {
+    [self.taskList setObject:textView.text atIndexedSubscript:indexPath.row];
     NSLog(@"updating task at row %d", indexPath.row);
     NSLog(@"%@", self.taskList);
 
@@ -143,13 +144,38 @@ static NSString * const TODOLIST = @"toDoList";
     [self.tableView reloadData];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSLog(@"calling return delegate");
-    NSIndexPath *indexPath = objc_getAssociatedObject(textField, &indexPathKey);
-    [self updateTask:textField indexPath:indexPath];
-    [textField resignFirstResponder];
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    NSLog(@"calling return delegate");
+//    NSIndexPath *indexPath = objc_getAssociatedObject(textField, &indexPathKey);
+//    [self updateTask:textField indexPath:indexPath];
+//    [textField resignFirstResponder];
+//    
+//    return YES;
+//}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        NSIndexPath *indexPath = objc_getAssociatedObject(textView, &indexPathKey);
+        [self updateTask:textView indexPath:indexPath];
+        [textView resignFirstResponder];
+        return NO;
+    }
     
     return YES;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+        self.prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"EditableCell"];
+        self.prototypeCell.taskView.text = [self.taskList objectAtIndex:indexPath.row];
+   
+    [self.prototypeCell layoutIfNeeded];
+
+    CGFloat height = self.prototypeCell.taskView.contentSize.height;
+    NSLog(@"height is: %f", height);
+    
+    return height;
 }
 
 /*

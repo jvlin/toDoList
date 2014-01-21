@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ToDoListViewController : UITableViewController <UITextFieldDelegate>
+@interface ToDoListViewController : UITableViewController <UITextViewDelegate, UITableViewDelegate>
 
 @end
